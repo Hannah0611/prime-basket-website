@@ -1,56 +1,118 @@
+Perfect! Here is your NEW Prime Basket with working cart! 🛒
+
+*DO THIS:*
+
+1. Go to `index.html` -> Pencil ✏️ Edit
+2. Press `Ctrl + A` (select all) -> Press `Delete`
+3. *Copy ALL code below* -> Paste there
+4. Commit changes
+
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Prime Basket - Fresh Groceries</title>
-<link rel="stylesheet" href="style.css">
+<title>Prime Basket - Fresh Groceries Ruiru</title>
+<style>
+body{font-family: Arial, sans-serif; margin:0; background:#f5f9f5;}
+header{background:#2e7d32; color:white; padding:15px 20px; display:flex; justify-content:space-between; align-items:center; position:sticky; top:0; z-index:10;}
+#cart-btn{background:white; color:#2e7d32; border:none; padding:10px 18px; border-radius:25px; font-weight:bold; cursor:pointer; font-size:16px;}
+.banner{background:#e8f5e9; padding:30px 20px; text-align:center;}
+.products{display:grid; grid-template-columns:repeat(auto-fit, minmax(160px,1fr)); gap:15px; padding:20px;}
+.card{background:white; border-radius:12px; padding:15px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.1);}
+.card h3{margin:10px 0 5px; font-size:18px;}
+.card p{color:#2e7d32; font-weight:bold; margin:5px 0 10px;}
+.card button{background:#2e7d32; color:white; border:none; padding:8px 18px; border-radius:20px; cursor:pointer;}
+.card button:hover{background:#1b5e20;}
+#cart-modal{display:none; position:fixed; top:70px; right:10px; background:white; width:320px; max-height:80vh; overflow-y:auto; border-radius:12px; box-shadow:0 5px 20px rgba(0,0,0,0.3); padding:20px; z-index:20;}
+.cart-item{display:flex; justify-content:space-between; margin:8px 0; font-size:14px;}
+#mpesa{background:#2e7d32; color:white; text-align:center; padding:40px 20px; margin-top:30px;}
+</style>
 </head>
 <body>
+
 <header>
-  <div class="logo"> Prime Basket</div>
-  <nav>
-    <a href="#">Home</a>
-    <a href="#">Shop</a>
-    <a href="#">About</a>
-    <a href="#">Contact</a>
-  </nav>
-  <button class="cart">🛒 Cart (0)</button>
+  <h2>🥬 Prime Basket</h2>
+  <button id="cart-btn" onclick="toggleCart()">🛒 Cart (<span id="cart-count">0</span>)</button>
 </header>
 
-<section class="hero">
-  <h1>Fresh Groceries Delivered To Your Door</h1>
-  <p>Quality fruits, vegetables & daily essentials at best prices in Kenya</p>
-  <button>Shop Now</button>
-</section>
+<div class="banner">
+  <h1>Fresh Farm Produce - Ruiru</h1>
+  <p>Free delivery in Ruiru | Order before 2PM</p>
+</div>
 
-<section class="products">
-  <h2>Fresh Today</h2>
-  <div class="grid">
-    <div class="card"><h3>🍅 Tomatoes</h3><p>Ksh 50 / kg</p><button>Add to Cart</button></div>
-    <div class="card"><h3>🥬 Sukuma Wiki</h3><p>Ksh 40 / bunch</p><button>Add to Cart</button></div>
-    <div class="card"><h3>🥑 Avocado</h3><p>Ksh 30 / pcs</p><button>Add to Cart</button></div>
-    <div class="card"><h3>🥛 Milk</h3><p>Ksh 75 / litre</p><button>Add to Cart</button></div>
-    <div cless="card"><h3>🧅 onions</h3><p>Ksh 70/ kg</p><button>Add to cart</button></div>
-    <div class="card"><h3>🥔potatoes</h3><p>Ksh 60 /kg</p><button>Add to cart</button></div>
-    <div class="card"><h3>pumkins</h3><p>Ksh 45 /kg</p><button>Add to cart</button></div>
-    <div class="card"><h3>mangoes</h3><p>Kshs 40 / piece</p><button>Add to cart</button></div>
-    <div class="card"><h3>eggs</h3><p>Ksh 450 per tray</p><button>Add to cart</button></div>
+<div class="products">
+  <div class="card"><h3>🍅 Tomatoes</h3><p>Ksh 50 / kg</p><button onclick="addToCart('Tomatoes',50)">Add to Cart</button></div>
+  <div class="card"><h3>🥬 Sukuma Wiki</h3><p>Ksh 40 / bunch</p><button onclick="addToCart('Sukuma Wiki',40)">Add to Cart</button></div>
+  <div class="card"><h3>🥑 Avocado</h3><p>Ksh 30 / pcs</p><button onclick="addToCart('Avocado',30)">Add to Cart</button></div>
+  <div class="card"><h3>🥛 Milk</h3><p>Ksh 75 / litre</p><button onclick="addToCart('Milk',75)">Add to Cart</button></div>
+  <div class="card"><h3>🧅 Onions</h3><p>Ksh 70 / kg</p><button onclick="addToCart('Onions',70)">Add to Cart</button></div>
+  <div class="card"><h3>🥔 Potatoes</h3><p>Ksh 60 / kg</p><button onclick="addToCart('Potatoes',60)">Add to Cart</button></div>
+  <div class="card"><h3>🎃 Pumpkins</h3><p>Ksh 45 / kg</p><button onclick="addToCart('Pumpkins',45)">Add to Cart</button></div>
+  <div class="card"><h3>🥭 Mangoes</h3><p>Ksh 40 / kg</p><button onclick="addToCart('Mangoes',40)">Add to Cart</button></div>
+  <div class="card"><h3>🥚 Eggs</h3><p>Ksh 450 / tray</p><button onclick="addToCart('Eggs Tray',450)">Add to Cart</button></div>
+</div>
 
-      
-  </div>
-<div style="background: #2e7d32; color: white; text-align: center; padding: 40px 20px; margin-top: 50px; border-radius: 15px;">
-  <h2 style="margin-bottom: 15px;">🟢 Lipa na M-Pesa</h2>
-  <p style="font-size: 18px; margin-bottom: 10px;">Pochi La Biashara</p>
-  <p style="font-size: 28px; font-weight: bold; letter-spacing: 2px; background: white; color: #2e7d32; display: inline-block; padding: 10px 25px; border-radius: 10px;">07968298516</p>
-  <p style="margin-top: 15px;">Name: Prime Basket</p>
-  <p style="font-size: 14px; margin-top: 10px; opacity: 0.9;">1. Go to M-Pesa > Lipa na M-Pesa > Pochi La Biashara<br>2. Enter number 07968298516<br>3. Enter amount & send<br>4. Send M-Pesa message to WhatsApp below</p>
-  <a href="https://wa.me/254796829851?text=Habari%20Prime%20Basket!%20Nimetuma%20pesa%20ya%20order%20yangu." style="display: inline-block; background: #25D366; color: white; padding: 12px 30px; border-radius: 25px; text-decoration: none; font-weight: bold; margin-top: 20px;">📱 Order on WhatsApp</a>
-</div> 
-</section>
+<!-- CART POPUP -->
+<div id="cart-modal">
+  <h3>Your Cart</h3>
+  <div id="cart-items"></div>
+  <hr>
+  <p><b>Total: Ksh <span id="cart-total">0</span></b></p>
+  <button onclick="checkout()" style="width:100%; background:#25D366; color:white; border:none; padding:12px; border-radius:25px; font-weight:bold; cursor:pointer; margin-top:10px;">📱 Checkout on WhatsApp</button>
+  <button onclick="clearCart()" style="width:100%; background:#eee; border:none; padding:8px; border-radius:20px; margin-top:8px; cursor:pointer;">Clear Cart</button>
+</div>
 
-<footer>
-  <p>© 2026 Prime Basket. Made with ❤️ by Hannah</p>
-</footer>
+<!-- M-PESA -->
+<div id="mpesa">
+  <h2>🟢 Lipa na M-Pesa</h2>
+  <p>Pochi La Biashara</p>
+  <p style="font-size:28px; font-weight:bold; background:white; color:#2e7d32; display:inline-block; padding:10px 25px; border-radius:10px; letter-spacing:1px;">07968298516</p>
+  <p>Name: Prime Basket</p>
+  <p style="font-size:13px; margin-top:10px;">Lipa na M-Pesa > Pochi La Biashara > Enter Number > Amount</p>
+</div>
+
+<script>
+let cart = [];
+function addToCart(name, price){
+  let item = cart.find(i => i.name === name);
+  if(item){ item.qty++; } else { cart.push({name, price, qty:1}); }
+  updateCart();
+  document.getElementById('cart-modal').style.display='block';
+}
+function updateCart(){
+  document.getElementById('cart-count').innerText = cart.reduce((s,i)=>s+i.qty,0);
+  let html=''; let total=0;
+  cart.forEach(i=>{
+    let sub=i.price*i.qty; total+=sub;
+    html+=`<div class="cart-item"><span>${i.name} x${i.qty}</span><span>Ksh ${sub}</span></div>`;
+  });
+  if(cart.length===0) html='<p style="color:#888; font-size:14px;">Cart is empty</p>';
+  document.getElementById('cart-items').innerHTML=html;
+  document.getElementById('cart-total').innerText=total;
+}
+function toggleCart(){
+  let m=document.getElementById('cart-modal');
+  m.style.display = m.style.display==='block' ? 'none' : 'block';
+}
+function clearCart(){ cart=[]; updateCart(); }
+function checkout(){
+  if(cart.length===0){ alert('Cart is empty!'); return; }
+  let total=0; let msg='Habari Prime Basket!%0A%0ANataka ku-order:%0A';
+  cart.forEach(i=>{ let sub=i.price*i.qty; total+=sub; msg+=`- ${i.name} x${i.qty} = Ksh ${sub}%0A`; });
+  msg+=`%0ATotal = Ksh ${total}%0A%0ANitalipa na Pochi 07968298516%0ANaomba delivery Ruiru. Asante!`;
+  window.open('https://wa.me/254796829851?text='+msg, '_blank');
+}
+</script>
+
 </body>
 </html>
+---
+
+*After committing, test:*
+Click Add to Cart -> Click Cart at top -> Click Checkout on WhatsApp
+
+It will open WhatsApp with total automatically! No more manual typing!
+
+Tell me when done - I want to test your cart! 🛒
